@@ -15,7 +15,7 @@ public class Ex2_1 {
 
         for (int i = 1; i <= n; i++) {
 
-            String fileName = "file_" + (10 + i) + ".txt";
+            String fileName = "file_" + i + ".txt";
             fileNames[i - 1] = fileName;
 
             File file = new File(fileName);
@@ -24,8 +24,10 @@ public class Ex2_1 {
 
                 try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
                     for (int j = 0; j < lines; j++) {
-                        bw.write("Hello World");
-                        bw.newLine();
+                        bw.write("Hello World!");
+                        if (j != lines - 1) {
+                            bw.newLine();
+                        }
                     }
                     bw.close();
                 } catch (IOException e) {
@@ -46,7 +48,7 @@ public class Ex2_1 {
 
         for (int i = 1; i <= fileNames.length; i++) {
 
-            String fileName = "file_" + (10 + i) + ".txt";
+            String fileName = "file_" + i + ".txt";
 
             try {
 
@@ -70,9 +72,57 @@ public class Ex2_1 {
         return counter;
     }
 
-    public int getNumOfLinesThreads(String[] fileNames) {
+    public static int getNumOfLinesThreads(String[] fileNames) {
 
-        return 0;
+        int counter = 0;
+
+        class LineCounterThreads extends Thread {
+
+            private int counter;
+            private String fileName;
+
+            public LineCounterThreads(String fileName) {
+                this.fileName = fileName;
+                counter = 0;
+            }
+
+            public void run() {
+                try {
+
+                    FileReader file = new FileReader(fileName);
+
+                    BufferedReader br = new BufferedReader(file);
+
+                    while ((br.readLine()) != null) {
+                        counter++;
+                    }
+
+                    br.close();
+
+                } catch (FileNotFoundException ex) {
+                    System.out.println("Unable to open file '" + fileName + "'");
+                } catch (IOException ex) {
+                    System.out.println("Error reading file '" + fileName + "'");
+                }
+            }
+        }
+        ;
+
+        for (int i = 1; i <= fileNames.length; i++) {
+            String fileName = "file_" + i + ".txt";
+            LineCounterThreads lct = new LineCounterThreads(fileName);
+            lct.start();
+
+            try {
+                lct.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            counter += lct.counter;
+        }
+
+        return counter;
     }
 
     public int getNumOfLinesThreadPool(String[] fileNames) {
@@ -81,8 +131,9 @@ public class Ex2_1 {
     }
 
     public static void main(String[] args) {
-        String[] fileNames = createTextFiles(10, 4, 100);
+        String[] fileNames = createTextFiles(5, 4, 20);
 
-        System.out.println(getNumOfLines(fileNames));
+        System.out.println(getNumOfLinesThreads(fileNames));
+
     }
 }
