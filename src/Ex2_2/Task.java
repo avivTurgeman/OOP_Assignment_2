@@ -1,3 +1,5 @@
+package Ex2_2;
+
 import java.util.concurrent.Callable;
 
 public class Task<V> implements Callable<V>,Comparable<Task<V>>{
@@ -29,6 +31,7 @@ public class Task<V> implements Callable<V>,Comparable<Task<V>>{
     public int compareTo(Task task) {
         return Integer.compare(this.priority, task.priority);
     }
+
 
     @Override
     public V call() throws Exception {
