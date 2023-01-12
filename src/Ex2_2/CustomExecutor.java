@@ -1,4 +1,4 @@
-package Ex2_2;
+package src.Ex2_2;
 
 import java.util.concurrent.*;
 
@@ -34,7 +34,7 @@ public class CustomExecutor extends ThreadPoolExecutor {
      * @return a Future representing the task
      * @throws NullPointerException if the task is null
      */
-    public <V> Future<V> submit(Ex2_2.Task<V> task) throws NullPointerException{
+    public <V> Future<V> submit(src.Ex2_2.Task<V> task) throws NullPointerException{
         if(task != null){
             Adapter<V> taskAdapter = new Adapter<>(task, task.getTaskType().getPriorityValue());
             this.QueuePriorityArr[task.getTaskType().getPriorityValue()]++;

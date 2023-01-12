@@ -1,4 +1,4 @@
-package Ex2_1;
+package src.Ex2_1;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -11,6 +11,17 @@ import java.util.Random;
 import java.util.concurrent.*;
 
 public class Ex2_1 {
+
+    public static src.Ex2_1.Ex2_1 Ex2_1;
+
+    /**
+     * creating <I>'n'</I> text files where each file have maximum of <I>'bound'</I> lines
+     * each run is different according to the <I>'seed'</I>
+     * @param n int of number of files
+     * @param seed int to set a frame
+     * @param bound int max lines for each file
+     * @return String[n] of the file names.
+     */
     public static String[] createTextFiles(int n, int seed, int bound) {
 
         String[] fileNames = new String[n];
@@ -22,6 +33,7 @@ public class Ex2_1 {
             fileNames[i - 1] = fileName;
 
             File file = new File(fileName);
+
             if (!file.exists()) {
                 int lines = rand.nextInt(bound);
 
@@ -45,6 +57,13 @@ public class Ex2_1 {
         return fileNames;
     }
 
+    /**
+     * This method returns the number of lines of all the files int the String[n] combine,
+     * where <I>'n'</I> is the number of files.
+     * this is a generic solution (each file at a time).
+     * @param fileNames String[n] of <I>'n'</I> names of files.
+     * @return int of combine lines count.
+     */
     public static int getNumOfLines(String[] fileNames) {
 
         int counter = 0;
@@ -75,6 +94,13 @@ public class Ex2_1 {
         return counter;
     }
 
+    /**
+     * this method returns the number of lines of all the files int the String[n] combine,
+     * where <I>'n'</I> is the number of files.
+     * This solution works with one Thread.
+     * @param fileNames String[n] of <I>'n'</I> names of files.
+     * @return int of combine lines count.
+     */
     public static int getNumOfLinesThreads(String[] fileNames) {
 
         int counter = 0;
@@ -134,6 +160,13 @@ public class Ex2_1 {
         return counter;
     }
 
+    /**
+     * This method returns the number of lines of all the files int the String[n] combine,
+     * where <I>'n'</I> is the number of files.
+     * This solution works with a ThreadPool.
+     * @param fileNames String[n] of <I>'n'</I> names of files.
+     * @return int of combine lines count.
+     */
     public static int getNumOfLinesThreadPool(String[] fileNames) {
 
         int counter = 0;
@@ -236,37 +269,5 @@ public class Ex2_1 {
         }
 
         pool.shutdown();
-    }
-
-    public static void main(String[] args) {
-        long start, end;
-
-        start = System.currentTimeMillis();
-        String[] fileNames = createTextFiles(200, 4, 100);
-        end = System.currentTimeMillis();
-        System.out.println("time to create: " + (end-start) + "ms");
-
-//        try {
-//            Thread.sleep(5000);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
-//        deleteTextFiles(100);
-
-        start = System.currentTimeMillis();
-        getNumOfLines(fileNames);
-        end = System.currentTimeMillis();
-        System.out.println("No Threads time: " + (end-start) + "ms");
-
-        start = System.currentTimeMillis();
-        getNumOfLinesThreads(fileNames);
-        end = System.currentTimeMillis();
-        System.out.println("1 Threads time: " + (end-start) + "ms");
-
-        start = System.currentTimeMillis();
-        getNumOfLinesThreadPool(fileNames);
-        end = System.currentTimeMillis();
-        System.out.println("ThreadPool time: " + (end-start) + "ms");
-
     }
 }
