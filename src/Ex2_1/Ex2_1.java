@@ -12,7 +12,6 @@ import java.util.concurrent.*;
 
 public class Ex2_1 {
 
-    public static src.Ex2_1.Ex2_1 Ex2_1;
 
     /**
      * creating <I>'n'</I> text files where each file have maximum of <I>'bound'</I> lines

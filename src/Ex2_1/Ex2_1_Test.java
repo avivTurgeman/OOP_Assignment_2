@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class Ex2_1_Test {
 
-    private static String[] names;
-
     @Test
     void main() {
         int noThreads, oneThread, ThreadPool;
