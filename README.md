@@ -99,7 +99,7 @@
     first of all we prints the amount of files we created, then we print the time it took for each method <br>
     and at the end, we print the amount of lines that each method counted.
     
-    ![Ex2_1_main](https://user-images.githubusercontent.com/102155998/212226345-ece1ce30-f085-4f1c-a4e4-e9e8e31a60ed.png)
+![Ex2_1_main](https://user-images.githubusercontent.com/102155998/212285115-3288a261-5bd5-49d9-a8e5-1ed1309c3c81.png)
     
 
 ## Ex2_1_UML
