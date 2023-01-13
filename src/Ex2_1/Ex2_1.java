@@ -107,15 +107,11 @@ public class Ex2_1 {
         class LineCounterThreads extends Thread {
 
             private int counter;
-            private String fileName;
+            private final String fileName;
+
 
             public LineCounterThreads(String fileName) {
                 this.fileName = fileName;
-                counter = 0;
-            }
-
-            public LineCounterThreads(){
-                fileName = "";
                 counter = 0;
             }
 
@@ -139,23 +135,25 @@ public class Ex2_1 {
                 }
             }
         }
-        ;
+        LineCounterThreads[] threads = new LineCounterThreads[fileNames.length];
 
         for (int i = 1; i <= fileNames.length; i++) {
             String fileName = "file_" + i + ".txt";
-            LineCounterThreads lct = new LineCounterThreads(fileName);
-            lct.start();
-
-            try {
-                lct.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            counter += lct.counter;
+            threads[i-1] = new LineCounterThreads(fileName);
         }
 
+        for (int i = 0; i < fileNames.length; i++){
+            threads[i].start();
+        }
 
+        for(LineCounterThreads thread : threads){
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            counter += thread.counter;
+        }
         return counter;
     }
 
@@ -169,8 +167,8 @@ public class Ex2_1 {
     public static int getNumOfLinesThreadPool(String[] fileNames) {
 
         int counter = 0;
-        ExecutorService pool = Executors.newFixedThreadPool(3);
-        Future<Integer> results[] = new Future[fileNames.length];
+        ExecutorService pool = Executors.newFixedThreadPool(fileNames.length);
+        Future<Integer>[] results = new Future[fileNames.length];
 
         class LinesThreadPool implements Callable<Integer> {
             private int counter;
@@ -178,11 +176,6 @@ public class Ex2_1 {
 
             LinesThreadPool(String fileName){
                 this.fileName = fileName;
-                counter = 0;
-            }
-
-            LinesThreadPool(){
-                fileName = "";
                 counter = 0;
             }
 
@@ -215,16 +208,15 @@ public class Ex2_1 {
             results[i - 1] = pool.submit(new LinesThreadPool(fileName));
         }
 
-        for(int i = 0; i < results.length; i++){
+        for (Future<Integer> result : results) {
             try {
-                counter += results[i].get();
+                counter += result.get();
             } catch (ExecutionException | InterruptedException e) {
                 e.printStackTrace();
             }
         }
 
         pool.shutdown();
-
 
         return counter;
     }
