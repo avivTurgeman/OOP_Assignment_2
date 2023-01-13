@@ -20,16 +20,16 @@
 
 # Ex2_1
 <ins>Files included:</ins> <br>
-- #### Ex2_1.java:
+- ### Ex2_1.java:
     Where all the code is written.
 
-- #### Ex2_1_Test.java:
+- ### Ex2_1_Test.java:
     Test class to check code correctness.
 
-- #### main.java:
+- ### main.java:
     Class to see the Runtime differences using Thread and ThreadPool.
 
-- #### Ex2_1_UML:
+- ### Ex2_1_UML:
     Picture of the Class Diagram of this package.
     
     
@@ -110,22 +110,22 @@
 
 # Ex2_2
 <ins>Files included:</ins>
-- #### Task.java:
+- ### Task.java:
     The Task class represents a task that can be executed by the program.
 
-- #### TaskType.java:
+- ### TaskType.java:
     An enum to prioritize the tasks.
 
-- #### Adapter.java:
+- ### Adapter.java:
     The Adapter class is an implementation of the FutureTask class and Comparable interface.
     
-- #### CustomExecutor.java:
+- ### CustomExecutor.java:
     CustomExecutor is a class that extends ThreadPoolExecutor and adds functionality for handling tasks with different priorities.
 
-- #### Ex2_2_Tests.java:
+- ### Ex2_2_Tests.java:
     Test class to check correctness of our code.
 
-- #### Ex2_2_UML.png:
+- ### Ex2_2_UML.png:
     Picture of the Class Diagram of this package.
     
 
