@@ -9,7 +9,7 @@
 - [@Yasmin Isakov](https://github.com/Yasmin0610)
 
 ## Brief Packages Description
-the packeges describes below are in the `src` folder
+  the packeges described below are in the `src` folder
 
 - ### Ex2_1:
   expresses the time saving of using a Thread and a ThreadPool.
