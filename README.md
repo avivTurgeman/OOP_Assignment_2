@@ -57,7 +57,8 @@
 
 - #### `deleteTextFiles(int n)` <br>
     This method delete the <I><B>n</B></I> files we created with `createTextFiles(int n, int seed, int bound)`. <br>
-    <ins><B>NOTE!</B></ins> int <I><B>n</B></I> needs to be provided manualy, according
+    <ins><B>NOTE!</B></ins> <br>
+    int <I><B>n</B></I> needs to be provided manualy, according
     to <I><B>n</B></I> value in `createTextFiles(int n, int seed, int bound)`.
 
 
