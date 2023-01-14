@@ -240,28 +240,15 @@
   <ins>This class have the following Test methods:</ins> <br>
   - #### `partialTest()`
       A test that was given to us with the assignment.
-  
-  - #### `main()`
-      Additional test of our own that creates 100 tasks and every time a task being added <br>
-      to the CustomExecutor, the logger will print <br>
-      the CustomExecutor toString INFO (Running/not Running, pool size, active threads, queued tasks, completed tasks). <br>
-      After the CustomExecutor finish all of the tasks, the logger will print again the CustomExecutor toString INFO, <br>
-      (Sum of 1 through 10, Reversed String, Total Price, Current maximum priority).
 
 <I><B><ins>Tests passed</I></B></ins>
   
-![Ex2_1_Tests](https://user-images.githubusercontent.com/102155998/212236374-71ff0d5f-7c13-4dcd-a5ad-6d17a48bb714.png)
+![test pass](https://user-images.githubusercontent.com/102155998/212498253-6ba7c18c-53f1-4ca6-b588-d88737450a3c.png)
   
   
-  <I><B><ins>main Test output</I></B></ins>
+  <I><B><ins>Test output</I></B></ins>
 
-![main test part 1](https://user-images.githubusercontent.com/102155998/212237031-0c1e5473-850a-462a-be4f-d442605e991f.png)
-  
-- #
-- #
-- #
-
-![main test part 2](https://user-images.githubusercontent.com/102155998/212237116-db4bcc5d-a8d8-45d6-9223-338237a75761.png)
+![logger](https://user-images.githubusercontent.com/102155998/212498227-13356567-5643-4dc0-8a88-4b390a1cecb4.png)
 
 
 ## Ex2_2_UML.png
