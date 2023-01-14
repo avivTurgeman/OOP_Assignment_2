@@ -50,46 +50,5 @@ public class Ex2_2_Tests {
                 customExecutor.getCurrentMax());
         customExecutor.gracefullyTerminate();
     }
-
-    @Test
-    public void main(){
-        CustomExecutor customExecutor = new CustomExecutor();
-
-        for (int i = 0; i < 96; i++)
-        {
-            Task<Integer> task = Task.createTask(()->{
-                int sum = 0;
-                for (int j = 1; j <= 10; j++) {
-                    sum += j;
-                }
-                return sum;
-            }, TaskType.COMPUTATIONAL);
-
-            Callable<Double> callable1 = ()-> {
-                return 1000 * Math.pow(1.02, 5);
-            };
-            Callable<String> callable2 = ()-> {
-                StringBuilder sb = new StringBuilder("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-                return sb.reverse().toString();
-            };
-
-            if(i%2 == 0) customExecutor.submit(task);
-            if(i%3 == 0)customExecutor.submit(callable1, TaskType.IO);
-            if(i%5 == 0)customExecutor.submit(callable2, TaskType.OTHER);
-
-            logger.info(customExecutor::toString);
-        }
-
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println("\n");
-
-        logger.info(customExecutor::toString);
-        customExecutor.gracefullyTerminate();
-
-    }
 }
 

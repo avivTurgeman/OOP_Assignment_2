@@ -100,7 +100,6 @@ public class CustomExecutor extends ThreadPoolExecutor {
      * but no new tasks will be accepted.
      * The method waits for the termination of all running tasks and for the tasks in the queue to be completed.
      * The method will wait for a maximum of 100 milliseconds for the termination of the tasks
-     * @throws InterruptedException if the current thread is interrupted while waiting for the termination
      */
     public void gracefullyTerminate(){
         super.shutdown();
